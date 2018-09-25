@@ -5,7 +5,9 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
+    "egg-cors": "^2.1.0",
     "egg-scripts": "^2.5.0",
+    "egg-security": "^2.4.0",
     "nodemailer": "^4.6.8"
   },
   "devDependencies": {
