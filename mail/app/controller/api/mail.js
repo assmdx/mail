@@ -25,7 +25,7 @@ class MailController extends Controller {
         } = this;
         const log = ctx.logger;
         try{
-            let res = await service.mail.sendMail(ctx.request.body.email,ctx.request.body.text)
+            let res = await service.mail.sendMail(ctx.request.body.email,ctx.request.body.text,ctx.request.body.subject,ctx.request.body.html)
                 .then(data=>{
                     return data;
                 })
@@ -34,9 +34,9 @@ class MailController extends Controller {
                 });
             this.success(res);
         }
-        catch (e) {
+        catch (err) {
             log.error("fail to send email", err);
-            this.fail('failed to send message,please check your mail server config',e);
+            this.fail('failed to send message,please check your mail server config',err);
         }
     }
 }

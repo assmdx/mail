@@ -14,7 +14,7 @@ class MailService extends Service {
         log.info('changed mail settings',settings);
         return settings
     }
-    sendMail(email,text) {
+    sendMail(email,text,subject,html) {
         const {
             ctx,
             app
@@ -31,18 +31,14 @@ class MailService extends Service {
                 pass: settings.pass
             }
         });
+        log.warn(settings);
         let mailOptions = {
             from : settings.user,
             to : email,
-            text: text
+            text: text,
+            subject: subject,
+            html: html
         };
-        // return transporter.sendMail(mailOptions,(error,info) =>{
-        //     if(error){
-        //         //log.error('fail to send email',error);
-        //         throw error;
-        //     }
-        //     return 'success'
-        // });
         return transporter.sendMail(mailOptions);
     }
 }
