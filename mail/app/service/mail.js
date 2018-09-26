@@ -9,13 +9,17 @@ class MailService extends Service {
             service,
             app
         } = this;
-        app.config.settings = settings;
+        this.app.config.settings = settings;
+        const log = ctx.logger;
+        log.info('changed mail settings',settings);
         return settings
     }
-    async send(email,text) {
+    sendMail(email,text) {
         const {
+            ctx,
             app
         } = this;
+        const log = ctx.logger;
         const settings = app.config.settings;
         let transporter = nodemailer.createTransport({
             service:settings.service,
@@ -27,20 +31,19 @@ class MailService extends Service {
                 pass: settings.pass
             }
         });
-
         let mailOptions = {
             from : settings.user,
             to : email,
             text: text
-        }
-        transporter.sendMail(mailOptions,(error,info) =>{
-            if(error){
-                return console.error(error);
-            }
-            console.log('Message sent: %s', info.messageId);
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-            return 'success'
-        });
+        };
+        // return transporter.sendMail(mailOptions,(error,info) =>{
+        //     if(error){
+        //         //log.error('fail to send email',error);
+        //         throw error;
+        //     }
+        //     return 'success'
+        // });
+        return transporter.sendMail(mailOptions);
     }
 }
 
