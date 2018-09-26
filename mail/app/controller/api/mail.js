@@ -8,11 +8,13 @@ class MailController extends Controller {
             ctx,
             service
         } = this;
+        const log = ctx.logger;
         try {
             let data = await service.mail.add(ctx.request.body)
             this.success(data)
         } catch (err) {
-            this.fail("fail to get collect list", err)
+            log.error("fail to change mail settings", err)
+            this.fail("fail to change mail settings", err)
         }
     }
 
@@ -21,11 +23,13 @@ class MailController extends Controller {
             ctx,
             service
         } = this;
+        const log = ctx.logger;
         try {
-            let data = await service.mail.send(ctx.request.body.email,ctx.request.body.text)
-            this.success(data)
+            let data = await service.mail.send(ctx.request.body.email,ctx.request.body.text);
+            this.success(null);
         } catch (err) {
-            this.fail("fail to get collect list", err)
+            log.error("fail to send email", err);
+            this.fail("fail to send email", err);
         }
     }
 }

@@ -11,7 +11,10 @@ module.exports = appInfo => {
   }
   // add your config here
   config.middleware = [];
-
+  config.user = {
+    username:"admin",
+    passsword:"123"
+  };
   config.mailSettings = settings;
   return config;
 };

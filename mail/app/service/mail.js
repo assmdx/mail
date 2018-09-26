@@ -10,6 +10,7 @@ class MailService extends Service {
             app
         } = this;
         app.config.settings = settings;
+        return settings
     }
     async send(email,text) {
         const {
