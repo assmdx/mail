@@ -39,7 +39,11 @@ class MailService extends Service {
             subject: subject,
             html: html
         };
-        return transporter.sendMail(mailOptions);
+        return transporter.sendMail(mailOptions,(error,info)=>{
+            if(error){
+                log.error("fail to send email",error);
+            }
+        });
     }
 }
 
