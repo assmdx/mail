@@ -6,7 +6,7 @@
 ### 下载代码
 
 ```
-https://github.com/assmdx/mail.git
+git clone https://github.com/assmdx/mail.git
 ```
 
 ### 安装依赖
@@ -85,5 +85,17 @@ data:{
 header:{
     'x-csrf-token':'' //token
 }
+```
+
+## 如何部署到服务器
+
+### 下载代码
+
+```
+git clone https://github.com/assmdx/mail.git
+
+cd email/docker
+
+./run.sh
 ```
 
