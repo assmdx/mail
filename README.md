@@ -15,6 +15,12 @@ https://github.com/assmdx/mail.git
 npm i
 ```
 
+### 运行
+
+```
+npm run dev
+```
+
 ### 使用流程
 
 1. 登录
